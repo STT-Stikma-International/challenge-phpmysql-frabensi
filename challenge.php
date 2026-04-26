@@ -45,35 +45,35 @@ if ($conn->query($sql) === TRUE) {
 
 
 // // TODO: SELECT data mahasiswa
-// $sql = "SELECT id, nama, nim, kelas, email FROM mahasiswa"; // KOREKSI: Tambah kolom id, kelas, email agar tabel tidak error
-// $result = $conn ->query($sql);
+ $sql = "SELECT id, nama, nim, kelas, email FROM mahasiswa"; // KOREKSI: Tambah kolom id, kelas, email agar tabel tidak error
+ $result = $conn ->query($sql);
 // // ---
-// if ($result->num_rows > 0) {
+if ($result->num_rows > 0) {
 
-//     echo "<table border='1'>";
-//     echo "<tr>
-//             <th>ID</th>
-//             <th>Nama</th>
-//             <th>NIM</th>
-//             <th>Kelas</th>
-//             <th>Email</th>
-//         </tr>";
+    echo "<table border='1'>";
+    echo "<tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Kelas</th>
+            <th>Email</th>
+        </tr>";
 
-//     while($row = $result->fetch_assoc()) {
-//         echo "<tr>
-//                 <td>".$row['id']."</td>
-//                 <td>".$row['nama']."</td>
-//                 <td>".$row['nim']."</td>
-//                 <td>".$row['kelas']."</td>
-//                 <td>".$row['email']."</td>
-//             </tr>";
-//     }
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>".$row['id']."</td>
+                <td>".$row['nama']."</td>
+                <td>".$row['nim']."</td>
+                <td>".$row['kelas']."</td>
+                <td>".$row['email']."</td>
+            </tr>";
+    }
 
-//     echo "</table>";
+    echo "</table>";
 
-// // } else {
-// //     echo "Data tidak ditemukan";
-// // }
+ } else {
+     echo "Data tidak ditemukan";
+ }
 
 
 
