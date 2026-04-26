@@ -8,6 +8,8 @@ $email = $_POST['email'];
 
 
 //TODO: insert nama, nim, kelas, email
+$sql = "INSERT INTO mahasiswa (nama , nim , kelas, email)
+VALUES ('$nama', '$nim', '$kelas' , '$email')";
 
 // ---
 if ($conn->query($sql) === TRUE) {
@@ -16,7 +18,8 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $conn->error;
 }
 
-$conn->close();
+// KOREKSI: Jangan tutup koneksi di sini ($conn->close()) jika masih ada perintah SQL di bawahnya. 
+// Saya pindahkan ke paling bawah.
 
 
 
@@ -41,9 +44,10 @@ $conn->close();
 
 
 
-//TODO: SELECT data mahasiswa
-
-// ---
+// // TODO: SELECT data mahasiswa
+ $sql = "SELECT id, nama, nim, kelas, email FROM mahasiswa"; // KOREKSI: Tambah kolom id, kelas, email agar tabel tidak error
+ $result = $conn ->query($sql);
+// // ---
 if ($result->num_rows > 0) {
 
     echo "<table border='1'>";
@@ -67,10 +71,9 @@ if ($result->num_rows > 0) {
 
     echo "</table>";
 
-} else {
-    echo "Data tidak ditemukan";
-}
-$conn->close();
+ } else {
+     echo "Data tidak ditemukan";
+ }
 
 
 
@@ -95,7 +98,9 @@ $conn->close();
 
 
 //TODO: UPDATE DATA MAHASISWA
-
+// KOREKSI: Tambahkan tanda kutip pembuka (") sebelum kata UPDATE
+$sql ="UPDATE mahasiswa
+set email='mmm' WHERE id=4";
 //---
 if ($conn->query($sql) === TRUE) {
     echo "Data berhasil diupdate";
@@ -104,7 +109,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-
+// KOREKSI: Tutup koneksi cukup sekali di akhir file
 $conn->close();
 
 ?>
